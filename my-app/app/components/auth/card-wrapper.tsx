@@ -1,17 +1,28 @@
+import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
+import { Header } from './header'
+
 interface CardWrapperProps {
   children: React.ReactNode
   headerLabel: string
-  backButton: boolean
+  backButtonHref: string
+  backButtonLabel: string
   showSocial?: boolean
 }
 
-const CardWrapper = ({
+export const CardWrapper = ({
   children,
   headerLabel,
-  backButton,
+  backButtonHref,
+  backButtonLabel,
   showSocial,
 }: CardWrapperProps) => {
-  return <div>CardWrapper</div>
+  return (
+    <Card className="w-[500px] shadow-lg">
+      <CardHeader>
+        <Header label={headerLabel} />
+      </CardHeader>
+      <CardContent>{children}</CardContent>
+      <CardFooter>{backButtonLabel}</CardFooter>
+    </Card>
+  )
 }
-
-export default CardWrapper
