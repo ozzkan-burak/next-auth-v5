@@ -1,4 +1,5 @@
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
+import { BackButton } from './back-button'
 import { Header } from './header'
 
 interface CardWrapperProps {
@@ -22,7 +23,9 @@ export const CardWrapper = ({
         <Header label={headerLabel} />
       </CardHeader>
       <CardContent>{children}</CardContent>
-      <CardFooter>{backButtonLabel}</CardFooter>
+      <CardFooter>
+        <BackButton href={backButtonHref} label={backButtonLabel} />
+      </CardFooter>
     </Card>
   )
 }
