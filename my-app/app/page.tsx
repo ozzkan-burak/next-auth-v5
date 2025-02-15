@@ -6,6 +6,9 @@ export default function Home() {
     <div>
       <Button>TEST</Button>
       <Input type="text" />
+      <h1 className="font-poppins">test</h1>
+      <h1 className="font-pacifico">test</h1>
+      <h1 className="font-titillium">test</h1>
     </div>
   );
 }
