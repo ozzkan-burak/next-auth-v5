@@ -3,7 +3,7 @@ import { FaGoogle, FaGithub } from 'react-icons/fa'
 
 export const SocialLogin = () => {
   return (
-    <div className="flex items-center w-full gap-9 padding-[20px]">
+    <div className="flex items-center w-full gap-9 pr-6 pl-6">
       <Button
         size="lg"
         className="w-full"
