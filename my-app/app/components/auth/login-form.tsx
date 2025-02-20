@@ -1,4 +1,11 @@
+'use-client'
+
 import { CardWrapper } from './card-wrapper'
+import { zodResolver } from '@hookform/resolvers/zod'
+import * as z from 'zod'
+import { useForm } from 'react-hook-form'
+import { LoginSchema } from '@/schema'
+
 export const LoginForm = () => {
   return (
     <>
