@@ -7,7 +7,7 @@ export const SocialLogin = () => {
       <Button
         size="lg"
         className="w-full"
-        variant="outline"
+        variant="google"
         //onClick={() => console.log('Google')}
       >
         <FaGoogle className="text-xl" />
@@ -15,7 +15,7 @@ export const SocialLogin = () => {
       <Button
         size="lg"
         className="w-full"
-        variant="outline"
+        variant="github"
         //onClick={() => console.log('Google')}
       >
         <FaGithub className="text-xl" />

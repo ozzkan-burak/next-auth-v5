@@ -5,8 +5,18 @@ import { CardWrapper } from './card-wrapper'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { LoginSchema } from '@/schema'
-import { Form, FormControl, FormField, FormItem, FormLabel } from '../ui/form'
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '../ui/form'
 import { Input } from '../ui/input'
+import { ErrorForm } from '../error-form'
+import { SuccessForm } from '../success-form'
+import { Button } from '../ui/button'
 
 export const LoginForm = () => {
   const form = useForm<z.infer<typeof LoginSchema>>({
@@ -41,6 +51,7 @@ export const LoginForm = () => {
                     <FormControl>
                       <Input type="email" {...field} placeholder="email" />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -54,9 +65,17 @@ export const LoginForm = () => {
                     <FormControl>
                       <Input type="password" {...field} placeholder="email" />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
+
+              <ErrorForm message=""></ErrorForm>
+              <SuccessForm message=""></SuccessForm>
+
+              <Button type="submit" className="w-full mt-3">
+                Login
+              </Button>
             </div>
           </form>
         </Form>
