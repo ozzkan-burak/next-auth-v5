@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useTransition } from 'react'
 import * as z from 'zod'
 import { CardWrapper } from './card-wrapper'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -19,6 +20,10 @@ import { SuccessForm } from '../success-form'
 import { Button } from '../ui/button'
 
 export const LoginForm = () => {
+  const [error, setError] = useState<string | undefined>('')
+  const [success, setSuccess] = useState<string | undefined>('')
+  const [isPending, setTransation] = useTransition()
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
