@@ -18,6 +18,7 @@ import { Input } from '../ui/input'
 import { ErrorForm } from '../error-form'
 import { SuccessForm } from '../success-form'
 import { Button } from '../ui/button'
+import { login } from '@/action/login'
 
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>('')
@@ -34,6 +35,20 @@ export const LoginForm = () => {
 
   const onSubmit = (data: z.infer<typeof LoginSchema>) => {
     console.log(data)
+
+    setError(undefined)
+    setSuccess(undefined)
+
+    setTransation(() => {
+      login(data).then((response) => {
+        if (response.error) {
+          setError(response.error)
+        }
+        if (response.success) {
+          setSuccess(response.success)
+        }
+      })
+    })
   }
 
   return (
@@ -50,6 +65,7 @@ export const LoginForm = () => {
               <FormField
                 control={form.control}
                 name="email"
+                disabled={isPending}
                 render={({ field }: any) => (
                   <FormItem>
                     <FormLabel htmlFor={field.name}>Email</FormLabel>
@@ -64,6 +80,7 @@ export const LoginForm = () => {
               <FormField
                 control={form.control}
                 name="password"
+                disabled={isPending}
                 render={({ field }: any) => (
                   <FormItem>
                     <FormLabel htmlFor={field.name}>Password</FormLabel>
@@ -75,8 +92,8 @@ export const LoginForm = () => {
                 )}
               />
 
-              <ErrorForm message=""></ErrorForm>
-              <SuccessForm message=""></SuccessForm>
+              <ErrorForm message={error} />
+              <SuccessForm message={success} />
 
               <Button type="submit" className="w-full mt-3">
                 Login
