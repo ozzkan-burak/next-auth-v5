@@ -10,7 +10,7 @@ export const SocialLogin = () => {
         variant="google"
         //onClick={() => console.log('Google')}
       >
-        <FaGoogle className="text-xl" />
+        <FaGoogle size={22} className="text-xl" />
       </Button>
       <Button
         size="lg"
@@ -18,7 +18,7 @@ export const SocialLogin = () => {
         variant="github"
         //onClick={() => console.log('Google')}
       >
-        <FaGithub className="text-xl" />
+        <FaGithub size={22} className="text-xl" />
       </Button>
     </div>
   )
