@@ -23,7 +23,7 @@ import { register } from '@/action/register'
 const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>('')
   const [success, setSuccess] = useState<string | undefined>('')
-  const [isPending, setTransation] = useTransition()
+  const [isPending, setTransition] = useTransition()
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -35,20 +35,23 @@ const RegisterForm = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof RegisterSchema>) => {
-    console.log(data)
-
     setError(undefined)
     setSuccess(undefined)
 
-    setTransation(() => {
-      register(data).then((response) => {
-        if (response.error) {
-          setError(response.error)
-        }
-        if (response.success) {
-          setSuccess(response.success)
-        }
-      })
+    setTransition(() => {
+      register(data)
+        .then((response) => {
+          if (response.error) {
+            setError(response.error)
+          }
+          if (response.success) {
+            setSuccess(response.success)
+          }
+        })
+        .catch((error) => {
+          setError('An unexpected error occurred')
+          console.error(error)
+        })
     })
   }
 
@@ -101,7 +104,11 @@ const RegisterForm = () => {
                   <FormItem>
                     <FormLabel htmlFor={field.name}>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" {...field} placeholder="email" />
+                      <Input
+                        type="password"
+                        {...field}
+                        placeholder="password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -112,7 +119,7 @@ const RegisterForm = () => {
               <SuccessForm message={success} />
 
               <Button type="submit" className="w-full mt-3">
-                Login
+                Register
               </Button>
             </div>
           </form>
