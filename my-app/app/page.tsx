@@ -1,8 +1,8 @@
 import Image from 'next/image'
-import { Button } from './components/ui/button'
-import { LoginButton } from './components/auth/login-button'
-import { Input } from './components/ui/input'
-import { Title } from './components/auth/title'
+import { Button } from '../components/ui/button'
+import { LoginButton } from '../components/auth/login-button'
+import { Input } from '../components/ui/input'
+import { Title } from '../components/auth/title'
 
 export default function Home() {
   return (
