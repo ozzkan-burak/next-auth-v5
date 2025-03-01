@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect } from 'react'
 import * as z from 'zod'
 import { CardWrapper } from './card-wrapper'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -54,6 +54,12 @@ const RegisterForm = () => {
         })
     })
   }
+
+  useEffect(() => {
+    // setState çağrısını burada yapın
+    setError(undefined)
+    setSuccess(undefined)
+  }, [])
 
   return (
     <>
