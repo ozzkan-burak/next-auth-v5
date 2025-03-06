@@ -1,5 +1,6 @@
 import GitHub from 'next-auth/providers/github'
 import type { NextAuthConfig } from 'next-auth'
+import Credentials from 'next-auth/providers/credentials'
 import LoginPage from './app/auth/login/page'
 import { LoginSchema } from './schema'
 import { getUserEmail } from './data/users'
