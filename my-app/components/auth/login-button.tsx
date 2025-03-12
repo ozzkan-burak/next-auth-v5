@@ -23,6 +23,9 @@ export const LoginButton = ({
   if (mode === 'modal') {
     return <div>LoginButton</div>
   }
+  console.log('asChild', asChild)
+  console.log('children', children)
+  console.log('mode', mode)
 
   return <span onClick={handleClick}>{children}</span>
 }
