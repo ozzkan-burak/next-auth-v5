@@ -25,8 +25,18 @@ export default {
           if (passwordmatch) return user
 
           return null
+        } else {
+          return null
         }
       },
     }),
   ],
+  secret: process.env.NEXTAUTH_SECRET,
+  pages: {
+    signIn: '/auth/login', // Login sayfası
+    signOut: '/auth/logout', // Logout sayfası
+    error: '/auth/error', // Hata sayfası
+    verifyRequest: '/auth/verify-request', // Doğrulama isteği sayfası
+    newUser: '/auth/new-user', // Yeni kullanıcı sayfası
+  },
 } satisfies NextAuthConfig

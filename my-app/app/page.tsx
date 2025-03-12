@@ -11,7 +11,7 @@ export default function Home() {
         <Title titleColor="text-white" />
         <p className="text-white text-lg">a simple auth service</p>
         <div className="mt-5">
-          <LoginButton>
+          <LoginButton mode="redirect">
             <Button variant="secondary" size="lg">
               Login
             </Button>
