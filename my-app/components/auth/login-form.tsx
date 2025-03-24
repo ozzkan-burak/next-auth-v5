@@ -34,8 +34,6 @@ export const LoginForm = () => {
   })
 
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
-    console.log(data)
-
     setError(undefined)
     setSuccess(undefined)
 
