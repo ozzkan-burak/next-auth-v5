@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useTransition, useEffect } from 'react'
 import * as z from 'zod'
 import { CardWrapper } from './card-wrapper'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -23,7 +23,7 @@ import { login } from '@/action/login'
 export const LoginForm = () => {
   const [error, setError] = useState<string | undefined>('')
   const [success, setSuccess] = useState<string | undefined>('')
-  const [isPending, setTransation] = useTransition()
+  const [isPending, setTransition] = useTransition()
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -31,23 +31,32 @@ export const LoginForm = () => {
       email: '',
       password: '',
     },
+    mode: 'onSubmit', // Sadece submit işleminde validate et
   })
 
   const onSubmit = async (data: z.infer<typeof LoginSchema>) => {
     setError(undefined)
     setSuccess(undefined)
 
-    setTransation(() => {
-      login(data).then((response) => {
-        if (response.error) {
-          setError(response.error)
-        }
-        if (response.success) {
-          setSuccess(response.success)
-        }
-      })
-    })
+    try {
+      const response = await login(data)
+      if (response.error) {
+        setError(response.error)
+      }
+      if (response.success) {
+        setSuccess(response.success)
+      }
+    } catch (error) {
+      setError('Beklenmeyen bir hata oluştu')
+      console.error(error)
+    }
   }
+
+  // Tüm form alanlarını render işlemi başlamadan önce sıfırla
+  useEffect(() => {
+    setError(null)
+    setSuccess(null)
+  }, [])
 
   return (
     <>
@@ -63,8 +72,7 @@ export const LoginForm = () => {
               <FormField
                 control={form.control}
                 name="email"
-                disabled={isPending}
-                render={({ field }: any) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor={field.name}>Email</FormLabel>
                     <FormControl>
@@ -78,12 +86,15 @@ export const LoginForm = () => {
               <FormField
                 control={form.control}
                 name="password"
-                disabled={isPending}
-                render={({ field }: any) => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel htmlFor={field.name}>Password</FormLabel>
                     <FormControl>
-                      <Input type="password" {...field} placeholder="email" />
+                      <Input
+                        type="password"
+                        {...field}
+                        placeholder="password"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
