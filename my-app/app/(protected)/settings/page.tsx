@@ -1,7 +1,16 @@
-import React from 'react'
+import { auth, signOut } from '@/auth'
 
-const SettingsPage = () => {
-  return <div>Settings</div>
+const SettingsPage = async () => {
+  return (
+    <form
+      action={async () => {
+        'use server'
+        await signOut()
+      }}
+    >
+      <button type="submit">Sign Out</button>
+    </form>
+  )
 }
 
 export default SettingsPage

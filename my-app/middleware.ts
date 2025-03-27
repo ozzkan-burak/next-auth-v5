@@ -23,6 +23,10 @@ export default auth((req) => {
   }
 
   if (isAuthRoute) {
+    console.log('isLoggedIn:', isLoggedIn)
+    console.log('req.auth:', req.auth)
+    console.log('DEFAULT_LOGIN_REDIRECT:', DEFAULT_LOGIN_REDIRECT)
+
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
     }
