@@ -11,6 +11,8 @@ const { auth } = NextAuth(authconfig)
 
 export default auth((req) => {
   const { nextUrl } = req
+  const token = req.auth
+  console.log('token:', token)
 
   const isLoggedIn = !!req.auth
 
@@ -23,10 +25,6 @@ export default auth((req) => {
   }
 
   if (isAuthRoute) {
-    console.log('isLoggedIn:', isLoggedIn)
-    console.log('req.auth:', req.auth)
-    console.log('DEFAULT_LOGIN_REDIRECT:', DEFAULT_LOGIN_REDIRECT)
-
     if (isLoggedIn) {
       return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
     }
