@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useTransition, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import * as z from 'zod'
 import { CardWrapper } from './card-wrapper'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -25,6 +26,8 @@ export const LoginForm = () => {
   const [success, setSuccess] = useState<string | undefined>('')
   const [isPending, setTransition] = useTransition()
 
+  const router = useRouter()
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -45,6 +48,7 @@ export const LoginForm = () => {
       }
       if (response.success) {
         setSuccess(response.success)
+        router.push('/settings')
       }
     } catch (error) {
       setError('Beklenmeyen bir hata oluştu')
@@ -54,8 +58,8 @@ export const LoginForm = () => {
 
   // Tüm form alanlarını render işlemi başlamadan önce sıfırla
   useEffect(() => {
-    setError(null)
-    setSuccess(null)
+    setError(undefined)
+    setSuccess(undefined)
   }, [])
 
   return (
