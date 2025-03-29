@@ -1,6 +1,6 @@
 /**
  *
- *@type {string[]}
+ *@type {string}
  */
 export const publicRoutes = ['/']
 /**
@@ -8,13 +8,13 @@ export const publicRoutes = ['/']
  *@type {string[]}
  */
 
-export const authRoutes = ['/auth/login', '/auth/register']
+export const authRoutes = ['/auth/login', '/auth/register', '/auth/error']
 
 export const apiAuthPrefix = '/api/auth'
 
 /**
  *
- *@type {string[]}
+ *@type {string}
  */
 
 export const DEFAULT_LOGIN_REDIRECT = '/settings'
