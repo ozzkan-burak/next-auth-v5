@@ -8,6 +8,10 @@ import bcrypt from 'bcryptjs'
 
 export default {
   providers: [
+    GitHub({
+      clientId: process.env.GITHUB_CLIENT_ID,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    }),
     Credentials({
       async authorize(credentials: unknown) {
         const validateFields = LoginSchema.safeParse(credentials)
