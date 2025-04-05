@@ -52,6 +52,7 @@ model Account {
   @@map("accounts")
 }
 
+
 model VerificationToken {
   id String
   email String
@@ -62,3 +63,4 @@ model VerificationToken {
 
   @@unique([email, token])
 }
+
