@@ -53,8 +53,8 @@ model Account {
 }
 
 model VerificationToken {
-  id    String @id @default(cuid())
-  email String
+  id         String @id @default(cuid())
+  email      String
   token      String @unique
   expires    DateTime
 
