@@ -7,6 +7,7 @@ export const generateVerificationToken = async (email: string) => {
   const expires = new Date(Date.now() + 60 * 60 * 1000) // 1 hour expiration
   const exitingToken = await getVerificationEmail(email)
   if (exitingToken) {
+    console.log(exitingToken)
     await db.verificationToken.delete({
       where: { token: exitingToken.verificationToken.token },
     })
