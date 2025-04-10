@@ -14,6 +14,7 @@ export const generateVerificationToken = async (email: string) => {
 
   const verificationToken = await db.verificationToken.create({
     data: {
+      id: uuidv4(),
       token,
       email,
       expires,
